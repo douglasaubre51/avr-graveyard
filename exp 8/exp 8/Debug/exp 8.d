@@ -1,0 +1,34 @@
+exp 8.d exp\ 8.o: .././exp\ 8.c \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/io.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/sfr_defs.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/inttypes.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/include/stdint.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/stdint.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/iom32.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/portpins.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/common.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/version.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/fuse.h \
+ e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/lock.h
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/io.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/sfr_defs.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/inttypes.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/include/stdint.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/stdint.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/iom32.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/portpins.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/common.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/version.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/fuse.h:
+
+e:\avr\ studio\ 2010\ ide\extensions\atmel\avrgcc\3.3.1.27\avrtoolchain\bin\../lib/gcc/avr/4.5.1/../../../../avr/include/avr/lock.h:
