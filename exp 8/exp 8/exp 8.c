@@ -28,5 +28,5 @@ void T0Delay()
 	while((TIFR & (1 << TOV0)) == 0);
 	
 	TCCR0 = 0;
-	TIFR = 0x1;
+	TIFR = 0x01;
 }
