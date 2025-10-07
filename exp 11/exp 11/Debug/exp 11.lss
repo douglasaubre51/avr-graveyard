@@ -3,31 +3,31 @@ exp 11.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000000c2  00000000  00000000  00000074  2**1
+  0 .text         00000154  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000010  00800060  000000c2  00000136  2**0
+  1 .data         00000010  00800060  00000154  000001c8  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .stab         000006cc  00000000  00000000  00000148  2**2
+  2 .stab         000006cc  00000000  00000000  000001d8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  3 .stabstr      00000090  00000000  00000000  00000814  2**0
+  3 .stabstr      00000090  00000000  00000000  000008a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_aranges 00000020  00000000  00000000  000008a4  2**0
+  4 .debug_aranges 00000020  00000000  00000000  00000934  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_pubnames 00000026  00000000  00000000  000008c4  2**0
+  5 .debug_pubnames 00000026  00000000  00000000  00000954  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   000001e5  00000000  00000000  000008ea  2**0
+  6 .debug_info   000001ab  00000000  00000000  0000097a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 0000014b  00000000  00000000  00000acf  2**0
+  7 .debug_abbrev 0000013a  00000000  00000000  00000b25  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000001d8  00000000  00000000  00000c1a  2**0
+  8 .debug_line   000002f1  00000000  00000000  00000c5f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000020  00000000  00000000  00000df4  2**2
+  9 .debug_frame  00000020  00000000  00000000  00000f50  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000104  00000000  00000000  00000e14  2**0
+ 10 .debug_str    000000fa  00000000  00000000  00000f70  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000003c  00000000  00000000  00000f18  2**0
+ 11 .debug_loc    000000c9  00000000  00000000  0000106a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_pubtypes 00000038  00000000  00000000  00000f54  2**0
+ 12 .debug_pubtypes 00000038  00000000  00000000  00001133  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -67,8 +67,8 @@ Disassembly of section .text:
   60:	10 e0       	ldi	r17, 0x00	; 0
   62:	a0 e6       	ldi	r26, 0x60	; 96
   64:	b0 e0       	ldi	r27, 0x00	; 0
-  66:	e2 ec       	ldi	r30, 0xC2	; 194
-  68:	f0 e0       	ldi	r31, 0x00	; 0
+  66:	e4 e5       	ldi	r30, 0x54	; 84
+  68:	f1 e0       	ldi	r31, 0x01	; 1
   6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
   6c:	05 90       	lpm	r0, Z+
   6e:	0d 92       	st	X+, r0
@@ -76,7 +76,7 @@ Disassembly of section .text:
   72:	b1 07       	cpc	r27, r17
   74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
   76:	0e 94 41 00 	call	0x82	; 0x82 <main>
-  7a:	0c 94 5f 00 	jmp	0xbe	; 0xbe <_exit>
+  7a:	0c 94 a8 00 	jmp	0x150	; 0x150 <_exit>
 
 0000007e <__bad_interrupt>:
   7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -95,57 +95,235 @@ int main(void)
   88:	94 bb       	out	0x14, r25	; 20
 	KEY_PRT = 0xff;
   8a:	85 bb       	out	0x15, r24	; 21
+		} while (colloc== 0x0f);
+		
+	
+	while(1)
+	{
+		KEY_PRT = 0xef;
+  8c:	2f ee       	ldi	r18, 0xEF	; 239
+	else if(colloc == 0x0d)
+		PORTD = (keypad[rowloc][1]);
+	else if(colloc == 0x0b)
+		PORTD = (keypad[rowloc][2]);
+	else
+		PORTD = (keypad[rowloc][3]);
+  8e:	80 e6       	ldi	r24, 0x60	; 96
+  90:	90 e0       	ldi	r25, 0x00	; 0
+		KEY_PRT = 0xef;
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 0;
+  92:	30 e0       	ldi	r19, 0x00	; 0
+			break;
+		}
+		
+		KEY_PRT = 0xdf;
+  94:	4f ed       	ldi	r20, 0xDF	; 223
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 1;
+  96:	51 e0       	ldi	r21, 0x01	; 1
+			break;
+		}
+		
+		KEY_PRT = 0xbf;
+  98:	6f eb       	ldi	r22, 0xBF	; 191
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 2;
+  9a:	72 e0       	ldi	r23, 0x02	; 2
+			break;
+		}
+		
+		KEY_PRT = 0x7f;
+  9c:	bf e7       	ldi	r27, 0x7F	; 127
+		colloc = (KEY_PIN & 0x0f);
+		rowloc = 3;
+  9e:	a3 e0       	ldi	r26, 0x03	; 3
 	
 	while(1)
 	{
 		do
 		{
 			KEY_PRT &= 0x0f;
-  8c:	85 b3       	in	r24, 0x15	; 21
-  8e:	8f 70       	andi	r24, 0x0F	; 15
-  90:	85 bb       	out	0x15, r24	; 21
+  a0:	e5 b3       	in	r30, 0x15	; 21
+  a2:	ef 70       	andi	r30, 0x0F	; 15
+  a4:	e5 bb       	out	0x15, r30	; 21
 			colloc = (KEY_PIN & 0x0f);	
-  92:	83 b3       	in	r24, 0x13	; 19
-  94:	8f 70       	andi	r24, 0x0F	; 15
+  a6:	e3 b3       	in	r30, 0x13	; 19
+  a8:	ef 70       	andi	r30, 0x0F	; 15
 		}while(colloc != 0x0f);
-  96:	8f 30       	cpi	r24, 0x0F	; 15
-  98:	c9 f7       	brne	.-14     	; 0x8c <main+0xa>
+  aa:	ef 30       	cpi	r30, 0x0F	; 15
+  ac:	c9 f7       	brne	.-14     	; 0xa0 <main+0x1e>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  9a:	87 e8       	ldi	r24, 0x87	; 135
-  9c:	93 e1       	ldi	r25, 0x13	; 19
-  9e:	01 97       	sbiw	r24, 0x01	; 1
-  a0:	f1 f7       	brne	.-4      	; 0x9e <main+0x1c>
-  a2:	00 c0       	rjmp	.+0      	; 0xa4 <main+0x22>
-  a4:	00 00       	nop
+  ae:	e7 e8       	ldi	r30, 0x87	; 135
+  b0:	f3 e1       	ldi	r31, 0x13	; 19
+  b2:	31 97       	sbiw	r30, 0x01	; 1
+  b4:	f1 f7       	brne	.-4      	; 0xb2 <main+0x30>
+  b6:	00 c0       	rjmp	.+0      	; 0xb8 <main+0x36>
+  b8:	00 00       	nop
 		
 		do 
 		{
 			_delay_ms(20);
 			colloc = (KEY_PIN & 0x0f);
-  a6:	83 b3       	in	r24, 0x13	; 19
-  a8:	8f 70       	andi	r24, 0x0F	; 15
+  ba:	e3 b3       	in	r30, 0x13	; 19
+  bc:	ef 70       	andi	r30, 0x0F	; 15
 		} while (colloc== 0x0f);
-  aa:	8f 30       	cpi	r24, 0x0F	; 15
-  ac:	b1 f3       	breq	.-20     	; 0x9a <main+0x18>
-  ae:	87 e8       	ldi	r24, 0x87	; 135
-  b0:	93 e1       	ldi	r25, 0x13	; 19
-  b2:	01 97       	sbiw	r24, 0x01	; 1
-  b4:	f1 f7       	brne	.-4      	; 0xb2 <main+0x30>
-  b6:	00 c0       	rjmp	.+0      	; 0xb8 <main+0x36>
-  b8:	00 00       	nop
+  be:	ef 30       	cpi	r30, 0x0F	; 15
+  c0:	b1 f3       	breq	.-20     	; 0xae <main+0x2c>
 		
-		_delay_ms(20);
-		colloc= (KEY_PIN & 0x0f);
-  ba:	83 b3       	in	r24, 0x13	; 19
-  bc:	e7 cf       	rjmp	.-50     	; 0x8c <main+0xa>
+	
+	while(1)
+	{
+		KEY_PRT = 0xef;
+  c2:	25 bb       	out	0x15, r18	; 21
+		colloc = (KEY_PIN & 0x0f);
+  c4:	f3 b3       	in	r31, 0x13	; 19
+  c6:	ff 70       	andi	r31, 0x0F	; 15
+		
+		if(colloc != 0x0f)
+  c8:	ff 30       	cpi	r31, 0x0F	; 15
+  ca:	79 f4       	brne	.+30     	; 0xea <main+0x68>
+		{
+			rowloc = 0;
+			break;
+		}
+		
+		KEY_PRT = 0xdf;
+  cc:	45 bb       	out	0x15, r20	; 21
+		colloc = (KEY_PIN & 0x0f);
+  ce:	f3 b3       	in	r31, 0x13	; 19
+  d0:	ff 70       	andi	r31, 0x0F	; 15
+		
+		if(colloc != 0x0f)
+  d2:	ff 30       	cpi	r31, 0x0F	; 15
+  d4:	61 f4       	brne	.+24     	; 0xee <main+0x6c>
+		{
+			rowloc = 1;
+			break;
+		}
+		
+		KEY_PRT = 0xbf;
+  d6:	65 bb       	out	0x15, r22	; 21
+		colloc = (KEY_PIN & 0x0f);
+  d8:	f3 b3       	in	r31, 0x13	; 19
+  da:	ff 70       	andi	r31, 0x0F	; 15
+		
+		if(colloc != 0x0f)
+  dc:	ff 30       	cpi	r31, 0x0F	; 15
+  de:	49 f4       	brne	.+18     	; 0xf2 <main+0x70>
+		{
+			rowloc = 2;
+			break;
+		}
+		
+		KEY_PRT = 0x7f;
+  e0:	b5 bb       	out	0x15, r27	; 21
+		colloc = (KEY_PIN & 0x0f);
+  e2:	f3 b3       	in	r31, 0x13	; 19
+  e4:	ff 70       	andi	r31, 0x0F	; 15
+		rowloc = 3;
+  e6:	ea 2f       	mov	r30, r26
+		break;
+  e8:	05 c0       	rjmp	.+10     	; 0xf4 <main+0x72>
+		KEY_PRT = 0xef;
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 0;
+  ea:	e3 2f       	mov	r30, r19
+  ec:	03 c0       	rjmp	.+6      	; 0xf4 <main+0x72>
+		KEY_PRT = 0xdf;
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 1;
+  ee:	e5 2f       	mov	r30, r21
+  f0:	01 c0       	rjmp	.+2      	; 0xf4 <main+0x72>
+		KEY_PRT = 0xbf;
+		colloc = (KEY_PIN & 0x0f);
+		
+		if(colloc != 0x0f)
+		{
+			rowloc = 2;
+  f2:	e7 2f       	mov	r30, r23
+		colloc = (KEY_PIN & 0x0f);
+		rowloc = 3;
+		break;
+	}
+	
+	if(colloc == 0x0e)
+  f4:	fe 30       	cpi	r31, 0x0E	; 14
+  f6:	51 f4       	brne	.+20     	; 0x10c <main+0x8a>
+		PORTD = (keypad[rowloc][0]);
+  f8:	f0 e0       	ldi	r31, 0x00	; 0
+  fa:	ee 0f       	add	r30, r30
+  fc:	ff 1f       	adc	r31, r31
+  fe:	ee 0f       	add	r30, r30
+ 100:	ff 1f       	adc	r31, r31
+ 102:	e8 0f       	add	r30, r24
+ 104:	f9 1f       	adc	r31, r25
+ 106:	e0 81       	ld	r30, Z
+ 108:	e2 bb       	out	0x12, r30	; 18
+ 10a:	ca cf       	rjmp	.-108    	; 0xa0 <main+0x1e>
+	else if(colloc == 0x0d)
+ 10c:	fd 30       	cpi	r31, 0x0D	; 13
+ 10e:	51 f4       	brne	.+20     	; 0x124 <main+0xa2>
+		PORTD = (keypad[rowloc][1]);
+ 110:	f0 e0       	ldi	r31, 0x00	; 0
+ 112:	ee 0f       	add	r30, r30
+ 114:	ff 1f       	adc	r31, r31
+ 116:	ee 0f       	add	r30, r30
+ 118:	ff 1f       	adc	r31, r31
+ 11a:	e8 0f       	add	r30, r24
+ 11c:	f9 1f       	adc	r31, r25
+ 11e:	e1 81       	ldd	r30, Z+1	; 0x01
+ 120:	e2 bb       	out	0x12, r30	; 18
+ 122:	be cf       	rjmp	.-132    	; 0xa0 <main+0x1e>
+	else if(colloc == 0x0b)
+ 124:	fb 30       	cpi	r31, 0x0B	; 11
+ 126:	51 f4       	brne	.+20     	; 0x13c <main+0xba>
+		PORTD = (keypad[rowloc][2]);
+ 128:	f0 e0       	ldi	r31, 0x00	; 0
+ 12a:	ee 0f       	add	r30, r30
+ 12c:	ff 1f       	adc	r31, r31
+ 12e:	ee 0f       	add	r30, r30
+ 130:	ff 1f       	adc	r31, r31
+ 132:	e8 0f       	add	r30, r24
+ 134:	f9 1f       	adc	r31, r25
+ 136:	e2 81       	ldd	r30, Z+2	; 0x02
+ 138:	e2 bb       	out	0x12, r30	; 18
+ 13a:	b2 cf       	rjmp	.-156    	; 0xa0 <main+0x1e>
+	else
+		PORTD = (keypad[rowloc][3]);
+ 13c:	f0 e0       	ldi	r31, 0x00	; 0
+ 13e:	ee 0f       	add	r30, r30
+ 140:	ff 1f       	adc	r31, r31
+ 142:	ee 0f       	add	r30, r30
+ 144:	ff 1f       	adc	r31, r31
+ 146:	e8 0f       	add	r30, r24
+ 148:	f9 1f       	adc	r31, r25
+ 14a:	e3 81       	ldd	r30, Z+3	; 0x03
+ 14c:	e2 bb       	out	0x12, r30	; 18
+ 14e:	a8 cf       	rjmp	.-176    	; 0xa0 <main+0x1e>
 
-000000be <_exit>:
-  be:	f8 94       	cli
+00000150 <_exit>:
+ 150:	f8 94       	cli
 
-000000c0 <__stop_program>:
-  c0:	ff cf       	rjmp	.-2      	; 0xc0 <__stop_program>
+00000152 <__stop_program>:
+ 152:	ff cf       	rjmp	.-2      	; 0x152 <__stop_program>

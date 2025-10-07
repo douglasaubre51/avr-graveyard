@@ -38,9 +38,6 @@ int main(void)
 			colloc = (KEY_PIN & 0x0f);
 		} while (colloc== 0x0f);
 		
-		_delay_ms(20);
-		colloc= (KEY_PIN & 0x0f);
-	}while(colloc == 0x0f);
 	
 	while(1)
 	{
@@ -86,3 +83,5 @@ int main(void)
 	else
 		PORTD = (keypad[rowloc][3]);
 }
+return 0;
+		}
